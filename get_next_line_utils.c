@@ -6,40 +6,29 @@
 /*   By: plbuet <plbuet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:57:49 by pbuet             #+#    #+#             */
-/*   Updated: 2024/10/30 17:21:02 by plbuet           ###   ########.fr       */
+/*   Updated: 2024/11/02 18:07:02 by plbuet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int end_line(const char *s)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (s[i])
+	str = (char *)s;
+	while (*str)
 	{
-		if (s[i] == '\n')
-			return (i);
-		i ++;
+		if (*str == (char)c)
+			return (str);
+		str++;
 	}
-	return (-1);
+	if ((char)c == '\0')
+		return (str);
+	return (NULL);
 }
 
-void	ft_strchr(char *s, int c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[c])
-	{
-		s[i] = s[c];
-		i ++;
-		c ++;
-	}
-}
-
-char	*ft_strdup(const char *s1, int pos)
+char	*ft_strdup(const char *s1)
 {
 	char	*s2;
 	int		i;
@@ -47,11 +36,13 @@ char	*ft_strdup(const char *s1, int pos)
 	i = 0;
 	if (s1 == NULL)
 		return (NULL);
-	s2 = malloc(sizeof(char ) * pos + 1);
+	while (s1[i])
+		i ++;
+	s2 = malloc(sizeof(char *) * i + 1);
 	if (s2 == NULL)
 		return (NULL);
 	i = 0;
-	while (i <= pos)
+	while (s1[i])
 	{
 		s2[i] = s1[i];
 		i ++;
